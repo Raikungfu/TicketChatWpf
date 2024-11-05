@@ -79,26 +79,35 @@ namespace TicketAdminChat
 
         private void OnNewUserNotification(string userName)
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            Task.Run(() =>
             {
-                MessageBox.Show($"{userName} has joined!");
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"{userName} has joined!");
+                });
             });
         }
 
         private void OnHelpRequest(string userName)
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            Task.Run(() =>
             {
-                MessageBox.Show($"{userName} needs help!");
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"{userName} needs help!");
+                });
             });
         }
 
         private void OnUserStatusUpdate(string userName, bool isOnline)
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            Task.Run(() =>
             {
-                string status = isOnline ? "is online" : "has disconnected";
-                MessageBox.Show($"{userName} {status}");
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    string status = isOnline ? "is online" : "has disconnected";
+                    MessageBox.Show($"{userName} {status}");
+                });
             });
         }
 

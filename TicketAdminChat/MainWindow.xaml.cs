@@ -115,8 +115,8 @@ namespace TicketAdminChat
                         Id = message.Id,
                         Content = message.Content,
                         Timestamp = message.Timestamp,
-                        FromUserName = message.FromUser.Name,
-                        FromFullName = message.FromUser.Email,
+                        FromUserName = message.FromUser.Email,
+                        FromFullName = message.FromUser.Name,
                         Room = room.Name,
                     };
 
@@ -167,7 +167,7 @@ namespace TicketAdminChat
 
             var nameTextBlock = new TextBlock
             {
-                Text = message.FromFullName == _adminUserName ? "Bạn" : message.FromFullName,
+                Text = message.FromUserName == _adminUserName ? "Bạn" : message.FromUserName,
                 FontWeight = FontWeights.Bold,
                 Margin = new Thickness(5, 0, 5, 0)
             };
@@ -189,7 +189,7 @@ namespace TicketAdminChat
 
             var border = new Border
             {
-                Background = message.FromFullName == _adminUserName ? new SolidColorBrush(Colors.LightGray) : new SolidColorBrush(Colors.LightBlue),
+                Background = message.FromUserName == _adminUserName ? new SolidColorBrush(Colors.LightGray) : new SolidColorBrush(Colors.LightBlue),
                 CornerRadius = new CornerRadius(10),
                 Padding = new Thickness(5),
                 Margin = new Thickness(5, 2, 5, 2)
