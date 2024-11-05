@@ -1,7 +1,8 @@
 ﻿<Application x:Class="TicketAdminChat.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TicketAdminChat">
+             xmlns:local="clr-namespace:TicketAdminChat"
+             ShutdownMode="OnMainWindowClose">
     <Application.Resources>
          
     </Application.Resources>

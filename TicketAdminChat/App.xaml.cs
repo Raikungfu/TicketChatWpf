@@ -144,5 +144,16 @@ namespace TicketAdminChat
                 }
             }
         }
+
+        protected override async void OnExit(ExitEventArgs e)
+        {
+            if (_hubConnection != null)
+            {
+                await _hubConnection.StopAsync();
+                await _hubConnection.DisposeAsync();
+            }
+            base.OnExit(e);
+        }
+
     }
 }
