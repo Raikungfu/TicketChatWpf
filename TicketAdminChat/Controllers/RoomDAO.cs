@@ -32,8 +32,7 @@ namespace UserChatManagement.Controllers
             }
 
             var roomName = GenerateRoomName(admin.Email, user.Email);
-            var room = await _context.Rooms.Include(r => r.Messages)
-                                            .FirstOrDefaultAsync(r => r.Name == roomName);
+            var room = await _context.Rooms.FirstOrDefaultAsync(r => r.Name == roomName);
 
             if (room == null)
             {
@@ -45,6 +44,16 @@ namespace UserChatManagement.Controllers
                 };
                 _context.Rooms.Add(room);
                 await _context.SaveChangesAsync();
+            }
+            else
+            {
+                room.Messages = await _context.Messages
+                    .Where(m => m.ToRoomId == room.Id)
+                    .OrderByDescending(m => m.Timestamp)
+                    .Take(20)
+                    .Include(m => m.FromUser)
+                    .Reverse()
+                    .ToListAsync();
             }
 
             return room;

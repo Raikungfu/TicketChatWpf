@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Windows;
+using System.Windows.Documents;
 using TicketAdminChat.Controllers;
 using TicketAdminChat.Data;
 using UserChatManagement.Controllers;
@@ -137,8 +138,9 @@ namespace TicketAdminChat
             {
                 try
                 {
-                    await Task.Delay(new Random().Next(0, 5) * 1000);
-                    await _hubConnection.StartAsync();
+                    await Task.Delay(new Random().Next(0, 5) * 1000).ConfigureAwait(false);
+                    await _hubConnection.StartAsync().ConfigureAwait(false);
+
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         MessageBox.Show("Reconnected to the server.");
@@ -153,6 +155,7 @@ namespace TicketAdminChat
                 }
             }
         }
+
 
         protected override async void OnExit(ExitEventArgs e)
         {

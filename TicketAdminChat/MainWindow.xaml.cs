@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.VisualBasic.ApplicationServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -45,7 +46,7 @@ namespace TicketAdminChat
             UserListBox.ItemsSource = users;
         }
 
-        public MainWindow(WindowLogin _windowLogin, ApplicationUserDAO userDao, UserManager<User> userManager, string adminFullName, string adminUserName, string adminAvatar, HubConnection hubConnection, RoomDAO roomDao)
+        public MainWindow(WindowLogin _windowLogin, ApplicationUserDAO userDao, string adminFullName, string adminUserName, string adminAvatar, HubConnection hubConnection, RoomDAO roomDao)
         {
             InitializeComponent();
             _hubConnection = hubConnection;
@@ -235,25 +236,22 @@ namespace TicketAdminChat
 
                 try
                 {
-                    var createdMessage = await _roomDao.SaveMessageAsync(currentRoomName, _adminUserName, messageContent);
+                    try
+                    {
+                        var createdMessage = new MessageViewModel
+                        {
+                            Content = messageContent,
+                            FromUserName = _adminUserName,
+                            Room = currentRoomName,
+                        };
 
-                    if (createdMessage != null)
-                    {
-                        try
-                        {
-                            await _hubConnection.InvokeAsync("NewMessage", currentRoomName, createdMessage);
-                            AddMessageToChat(createdMessage);
-                        }
-                        catch (Exception ex)
-                        {
-                            System.Windows.MessageBox.Show($"Could not send message to chat room: {ex.Message}");
-                        }
-                        ChatInputBox.Clear();
+                        await _hubConnection.InvokeAsync("NewMessage", currentRoomName, createdMessage);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        System.Windows.MessageBox.Show("Failed to send message. Room or user not found.");
+                        System.Windows.MessageBox.Show($"Could not send message to chat room: {ex.Message}");
                     }
+                    ChatInputBox.Clear();
                 }
                 catch (Exception ex)
                 {

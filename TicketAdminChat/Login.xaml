@@ -8,7 +8,7 @@
         ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="StyledButton" TargetType="Button">
-            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="Background" Value="#808080"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Padding" Value="15,10"/>
@@ -26,10 +26,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#357ABD"/>
+                                <Setter Property="Background" Value="#808080"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#285A8B"/>
+                                <Setter Property="Background" Value="#707070"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -81,20 +81,20 @@
 
 
     <Grid>
-        <Label Content="Account" HorizontalAlignment="Left" Margin="124,79,0,0" VerticalAlignment="Top" Height="36" Width="196" FontSize="20"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="124,161,0,0" VerticalAlignment="Top" Height="36" Width="196" FontSize="20"/>
+        <Label Content="Account" HorizontalAlignment="Left" Margin="124,63,0,0" VerticalAlignment="Top" Height="36" Width="196" FontSize="20"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="124,145,0,0" VerticalAlignment="Top" Height="36" Width="196" FontSize="20"/>
 
-        <TextBox x:Name="txtId" Style="{StaticResource InputTextBox}" HorizontalAlignment="Left" Margin="162,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="217" Height="27"
+        <TextBox x:Name="txtId" Style="{StaticResource InputTextBox}" HorizontalAlignment="Left" Margin="162,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="217" Height="27"
                  Text="Enter your account..." Foreground="Gray" GotFocus="TxtId_GotFocus" LostFocus="TxtId_LostFocus" VerticalContentAlignment="Center"/>
 
-        <TextBox x:Name="txtPwPlaceholder" Style="{StaticResource InputTextBox}" HorizontalAlignment="Left" Margin="162,202,0,0" VerticalAlignment="Top" Width="217" Height="27" 
+        <TextBox x:Name="txtPwPlaceholder" Style="{StaticResource InputTextBox}" HorizontalAlignment="Left" Margin="162,186,0,0" VerticalAlignment="Top" Width="217" Height="27" 
                  Text="Enter your password..." Foreground="Gray" IsReadOnly="True" Background="Transparent"
                  GotFocus="txtPwPlaceholder_GotFocus" VerticalContentAlignment="Center"/>
 
         <PasswordBox x:Name="txtPw" HorizontalAlignment="Left" Style="{StaticResource InputPasswordBox}" Margin="161,202,0,0" VerticalAlignment="Top" Width="217" Height="27" 
                      PasswordChanged="txtPw_PasswordChanged" LostFocus="txtPw_LostFocus" Visibility="Hidden" VerticalContentAlignment="Center"/>
 
-        <Label Content="Login to Ticket Admin Chat" HorizontalAlignment="Left" Height="47" Width="358" FontSize="24" VerticalAlignment="Top" Margin="72,27,0,0"/>
-        <Button Content="Login" Style="{StaticResource StyledButton}"  HorizontalAlignment="Left" Margin="250,250,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click"/>
+        <Label Content="Login to Ticket Admin Chat" HorizontalAlignment="Center" Height="47" Width="358" FontSize="24" VerticalAlignment="Top" Margin="0,11,0,0"/>
+        <Button Content="Login" Style="{StaticResource StyledButton}"  HorizontalAlignment="Left" Margin="250,234,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click"/>
     </Grid>
 </Window>

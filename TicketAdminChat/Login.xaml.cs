@@ -20,7 +20,6 @@ namespace TicketAdminChat
         private readonly ApplicationUserDAO _userDAO;
         private readonly RoomDAO _roomDAO;
         private readonly HubConnection _hubConnection;
-        private readonly UserManager<User> _userManager;
 
         public WindowLogin()
         {
@@ -44,7 +43,7 @@ namespace TicketAdminChat
                 var result = await _userDAO.LoginAdmin(username, password);
                 if (result.SignInResult.Succeeded)
                 {
-                    var mainWindow = new MainWindow(this, _userDAO, _userManager, result.Name, result.Email, result.AvatarUrl, _hubConnection, _roomDAO);
+                    var mainWindow = new MainWindow(this, _userDAO, result.Name, result.Email, result.AvatarUrl, _hubConnection, _roomDAO);
                     mainWindow.Show();
                     _hubConnection.InvokeAsync("AdminConnect", result.Email);
                     this.Hide();
